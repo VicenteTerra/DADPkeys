@@ -19,7 +19,8 @@ import javax.persistence.NamedQuery;
  *
  * @author Vicente
  */
-@Entity@NamedQuery(name = Chave.TODAS_CHAVES, query = "select u from Chave u")
+@Entity
+@NamedQuery(name = Chave.TODAS_CHAVES, query = "select u from Chave u")
 public class Chave implements Serializable {
 
     public static final String TODAS_CHAVES = "Chave.TodasChaves";
@@ -28,15 +29,22 @@ public class Chave implements Serializable {
     @GeneratedValue
     private long id;
     private int sala_id;
-   
-    
+    private String pavilhao;
+
+    public String getPavilhao() {
+        return pavilhao;
+    }
+
+    public void setPavilhao(String pavilhao) {
+        this.pavilhao = pavilhao;
+    }
 
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
-        this.id = id;   
+        this.id = id;
     }
 
     public int getSala_id() {
@@ -46,7 +54,5 @@ public class Chave implements Serializable {
     public void setSala_id(int sala_id) {
         this.sala_id = sala_id;
     }
-
-  
 
 }
