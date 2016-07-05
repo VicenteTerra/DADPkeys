@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head> 
+        <title> DADP </title>       
+    </h:head>
+    <h:body>
+        <p:growl id="msgs"/>
+        <h:form>
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton style="font-family: cursive" value="Nova Chave" icon="ui-icon-plus" immediate="true" onclick="PF('dlg').show();"/>
+                </f:facet>
+            </p:toolbar>
+            
+            <p:dataTable id="chaves" value="#{chaveControl.listaChaves}" var="chave" >
+                <p:column>
+                    <p:commandLink  actionListener="#{chaveControl.remover(chave)}" immediate="true" update="chaves">
+                        <i class="fa fa-remove"></i>
+                        <p:confirm header="Confirmação" message="Deseja realmente remover o usuario?" icon="ui-icon-alert" />
+                    </p:commandLink>  
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog> 
+
+
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{chave.sala_id}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <p:dialog style="font-family: cursive" header="Nova Chave" widgetVar="dlg" resizable="false" >
+            <h:form id="formCad">
+
+                <p:panelGrid columns="2"  columnClasses="ui-grid-col-12,ui-grid-col-18">
+
+                    <p:outputLabel style="font-family: cursive" value="Sala: " for="txUser"/>
+                    <p:inputText id="txUser" value="#{chaveControl.chave.sala_id}" required="true"/>
+
+
+                </p:panelGrid>
+                <p:commandButton  style="font-family: cursive" value="Cadastrar" 
+                                  update="formCad" action="#{chaveControl.salvar()}"/>
+
+            </h:form>
+        </p:dialog>
+    </h:body>
+</html>
