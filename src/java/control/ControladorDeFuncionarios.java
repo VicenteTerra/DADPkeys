@@ -5,9 +5,11 @@
  */
 package control;
 
-import Util.Mensagens;
+import utill.Mensagens;
 import dao.FuncionarioDAO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,13 +31,20 @@ public class ControladorDeFuncionarios {
     private final FuncionarioDAO funcionarioDAO = new JPAFuncionarios();
     private Funcionario funcionarioSessao = null;
     private Funcionario funcionario = new Funcionario();
+    private List listaFuncionarios = new ArrayList();
     private String checkpassword;
+    
+    @PostConstruct
+    public void loadFuncionarios(){
+       listaFuncionarios =  funcionarioDAO.todas();
+       
+    }
+    
 
     public String autentica() {
         funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
                 funcionario.getSenha());
-        
-       
+
         if (funcionarioSessao == null) {
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_ERROR,
@@ -43,31 +52,31 @@ public class ControladorDeFuncionarios {
                     null);
             return "index.xhtml?faces-redirect=true";
         }
-        return "indexUser.xhtml?faces-redirect=true";
+        return "indexFuncionarios.xhtml?faces-redirect=true";
 
     }
 
-    public String cadastro() throws RollbackException {
+    public String cadastrar() throws RollbackException {
 
         if (funcionario.getSenha().equals(checkpassword)) {
 
             funcionarioDAO.salvar(funcionario);
             funcionario = new Funcionario();
-
+            listaFuncionarios = funcionarioDAO.todas();
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_INFO,
                     "Inserção bem sucedida!",
                     null);
 
         } else {
-           
+
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_ERROR,
                     "As senhas informadas não conferem!",
                     null);
         }
 
-        return "cadastro.xhtml?faces-redirect=true";
+        return "cadastroFuncionarios.xhtml?faces-redirect=true";
 
     }
 
@@ -79,14 +88,15 @@ public class ControladorDeFuncionarios {
         return "index.xhtml?faces-redirect=true";
     }
 
-    public String atualizaDados() {
+    /*public String atualizaDados() {
         System.out.println(" novo nome " + funcionarioSessao.getNome());
         funcionarioDAO.atualizaFuncionario(funcionarioSessao);
         Mensagens.adicionarMensagem(FacesMessage.SEVERITY_INFO,
                 "Funcionario Alterado!", null);
         return "indexUser.xhtml?faces-redirect=true";
 
-    }
+    }*/
+    
 
     public Funcionario getFuncionarioSessao() {
         return funcionarioSessao;
@@ -110,6 +120,14 @@ public class ControladorDeFuncionarios {
 
     public void setCheckpassword(String checkpassword) {
         this.checkpassword = checkpassword;
+    }
+
+    public List getListaFuncionarios() {
+        return listaFuncionarios;
+    }
+
+    public void setListaFuncionarios(List listaFuncionarios) {
+        this.listaFuncionarios = listaFuncionarios;
     }
 
 }

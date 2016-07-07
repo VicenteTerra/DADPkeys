@@ -9,34 +9,29 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <p:growl id="msgs" life="700"  />
+    <h:body style="background-color: cornflowerblue ">
+        <p:growl id="msgs" life="800"  />
         <b:container >
-            <b:panel title='DADPkeys - Autenticação de Usuário' style="margin-left: 25%;margin-right: 25%; margin-bottom: 50%;font-family: serif"> 
-                
-                <h:form id="formLogin"  >
-                    <h:panelGrid columns="1">
-
-                        <b:inputText value="#{funcControl.funcionario.login}" required="true" required-message="Insira seu nome de usuário"   span="8">
-                            <f:facet name="prepend" >
-                                <b:icon name="user" />
-                                <h:outputText value="Usuário: " style="font-family: monospace" /> 
-                            </f:facet>  
-                        </b:inputText>
-
-
-                        <b:inputSecret value="#{funcControl.funcionario.senha}" required="true" required-message="Insira sua sennha"   span="8">
-                            <f:facet name="prepend"  >
-                                <b:icon name="lock" />
-                                <h:outputText  value="Senha:" style="font-family: monospace" />
-                            </f:facet>  
-                        </b:inputSecret>
-
-                        <b:commandButton action="#{funcControl.autentica}" style="margin-left: 3%; font-family: monospace" update="formLogin msgs" value="Autenticar" />    
-                    </h:panelGrid>
-                </h:form>
-
-            </b:panel>
+            <h:form id="formLogin"  >             
+                <h:panelGrid columns="1" class="col-md-6" style="margin-left: 30%; margin-top: 5%;" >
+                    <h4>Autenticação de Usuário</h4>
+                    <b:inputText value="#{funcControl.funcionario.login}" required="true" 
+                                 required-message="Insira seu nome de usuário"   span="8" placeholder="usuário">
+                        <f:facet name="prepend" >
+                            <b:icon name="user" />
+                          
+                        </f:facet>  
+                    </b:inputText>
+                    <b:inputSecret value="#{funcControl.funcionario.senha}" required="true" 
+                                   required-message="Insira sua sennha"   span="8" placeholder="senha">
+                        <f:facet name="prepend"  >
+                            <b:icon name="lock" />
+                           
+                        </f:facet>  
+                    </b:inputSecret>
+                    <b:commandButton action="#{funcControl.autentica}" update="formLogin msgs" value="Autenticar" />    
+                </h:panelGrid>
+            </h:form>       
         </b:container>
     </h:body>
 </html>

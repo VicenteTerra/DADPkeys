@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head> 
+        <title> DADP </title>       
+    </h:head>
+    <h:body>
+
+        <p:growl id="msgs"/>
+        <b:container class="col-md-6" style="margin-left: 20%">
+            <h:form id="formcad">
+
+                <b:panelGrid columns="1" >                       
+                    <h:outputText  value=" Nome: "  />
+                    <b:inputText value="#{funcControl.funcionario.nome}" required="true" /> 
+
+                    <h:outputText  value=" E-mail: "  />
+                    <b:inputText value="#{funcControl.funcionario.email}"  required="true"/>
+
+                    <h:outputText  value=" Função: "  />
+                    <b:inputText value="#{funcControl.funcionario.funcao}"  />
+
+                    <h:outputText  value=" Login: "  />
+                    <b:inputText value="#{funcControl.funcionario.login}"  required="true" />
+
+                    <h:outputText  value=" Senha: "  />
+                    <b:inputSecret value="#{funcControl.funcionario.senha}"  required="true"  />
+
+                    <h:outputText  value=" Repita a Senha: "  />
+                    <b:inputSecret value="#{funcControl.checkpassword}"  required="true"  />
+
+                </b:panelGrid>
+
+
+                <b:commandButton value="Salvar" look="primary"  
+                                 action="#{funcControl.cadastrar}" update="formcad msgs" />
+                <b:navLink value="Cancelar" href="indexFuncionarios.xhtml" />
+            </h:form>
+        </b:container>
+
+    </h:body>
+</html>
+
