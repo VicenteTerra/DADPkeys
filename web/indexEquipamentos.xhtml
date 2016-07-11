@@ -21,7 +21,7 @@ and open the template in the editor.
                 <b:navLink value="Funcionários" href="indexFuncionarios.xhtml"/>
                 <b:navLink value="Discentes" href="indexDiscentes.xhtml"/>
                 <b:navLink value="Docentes" href="indexDocentes.xhtml"/>
-                <b:navLink value="Equipamentos" href="indexEquipamentos.xhtml"/>                        
+                <b:navLink value="Equipamentos" href="indexEquipametos.xhtml"/>                        
             </b:navbarLinks >
             <b:navbarLinks pull="right">
                 <b:navLink value="Olá #{funcControl.funcionarioSessao.nome}" href="index.xhtml"/>
@@ -34,31 +34,26 @@ and open the template in the editor.
                 <b:column span="2">
                     <h:form>
                         <b:flyOutMenu width="100px">
-                            <b:navLink value="Novo Funcionário" icon="user" 
+                            <b:navLink value="Novo Equipamento" icon="user" 
                                        iconAlign="left" href="cadastroFuncionarios.xhtml" />                                                                                                               
                         </b:flyOutMenu>
                     </h:form>
                 </b:column>
                 <b:column span="9">
-                    <b:dataTable value="#{funcControl.listaFuncionarios}" var="func" update="">
+                    <b:dataTable value="" var="func" update="">
                         <b:column>
                             <f:facet name="header">
                                 <h:outputText value="Nome" style="color: #337ab7" />
                             </f:facet>
-                            <h:outputText value="#{func.nome}" />
+                            <h:outputText value="" />
                         </b:column>
                         <b:column>
                             <f:facet name="header">
-                                <h:outputText value="Função" style="color: #337ab7" />
+                                <h:outputText value="Tipo" style="color: #337ab7" />
                             </f:facet>
-                            <h:outputText value="#{func.funcao}" />
+                            <h:outputText value="" />
                         </b:column>
-                        <b:column>
-                            <f:facet name="header">
-                                <h:outputText value="E-mail" style="color: #337ab7" />
-                            </f:facet>  
-                            <h:outputText value="#{func.email}" />
-                        </b:column>                                   
+                                                      
                     </b:dataTable>
                 </b:column>
             </b:row>
