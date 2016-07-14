@@ -22,6 +22,8 @@ public interface FuncionarioDAO {
     public void remover(Long iduser);
 
     public List<Funcionario> todas();
+    
+    public Funcionario busca(Long id);
 
     public void atualizaFuncionario(Funcionario funcionario);
     

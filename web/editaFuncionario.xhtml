@@ -15,16 +15,16 @@ and open the template in the editor.
         <title>DADP</title>       
     </h:head>
     <h:body>
+        
         <b:growl id="msgs"/>
         <b:container class="col-md-6" style="margin-left: 20%">
             <h:form id="formcad">
-
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Nome: "  />
                     <b:inputText value="#{funcControl.funcionario.nome}" required="true" /> 
 
                     <h:outputText  value=" E-mail: "  />
-                    <b:inputText value="#{funcControl.funcionario.email}"  required="true"/>
+                    <b:inputText value="#{funcControl.funcionario.email}"  required="true" />
 
                     <h:outputText  value=" Função: "  />
                     <b:inputText value="#{funcControl.funcionario.funcao}"  />
@@ -39,12 +39,11 @@ and open the template in the editor.
                     <b:inputSecret value="#{funcControl.checkpassword}"  required="true"  />
 
                 </b:panelGrid>
-                <b:commandButton value="Salvar" look="primary"  
-                                 action="#{funcControl.cadastrar}" update="formcad msgs" />
-                <b:navLink value="Cancelar" href="indexFuncionarios.xhtml" />
+                <b:commandButton value="Atualizar" look="primary"  
+                                 action="#{funcControl.atualizar}" update="formcad msgs" />
+                <b:navLink value="Voltar" href="indexFuncionarios.xhtml" />
             </h:form>
         </b:container>
 
     </h:body>
 </html>
-

@@ -16,8 +16,8 @@ import model.Funcionario;
  *
  * @author Vicente
  */
-public class JPAFuncionarios implements FuncionarioDAO,Serializable{
-   
+public class JPAFuncionarios implements FuncionarioDAO, Serializable {
+
     public void salvar(Funcionario usuario) {
         EntityManager em = JPAUtil.getEMF().createEntityManager();
         try {
@@ -56,21 +56,28 @@ public class JPAFuncionarios implements FuncionarioDAO,Serializable{
         }
         em.close();
     }
+
+    public Funcionario busca(Long id) {
+        EntityManager em = JPAUtil.getEMF().createEntityManager();
+        Funcionario user = em.find(Funcionario.class, id);
+        em.close();
+        return user;
+    }
+
     public List<Funcionario> todas() {
         EntityManager em = JPAUtil.getEMF().createEntityManager();
         TypedQuery<Funcionario> tq = em.createNamedQuery(Funcionario.TODOS_FUNCIONARIOS,
                 Funcionario.class);
-      //  tq.setParameter("id_user", usuarioId);
+        //  tq.setParameter("id_user", usuarioId);
         List<Funcionario> funcionarios = tq.getResultList();
         em.close();
         return funcionarios;
     }
-   
-    
-    public void atualizaFuncionario(Funcionario funcionario){
-         EntityManager em = JPAUtil.getEMF().createEntityManager();
-         System.out.println(" " + funcionario.getNome());
-       try {
+
+    public void atualizaFuncionario(Funcionario funcionario) {
+        EntityManager em = JPAUtil.getEMF().createEntityManager();
+        System.out.println(" " + funcionario.getNome());
+        try {
             em.getTransaction().begin();
             em.merge(funcionario);
             em.getTransaction().commit();
@@ -78,5 +85,5 @@ public class JPAFuncionarios implements FuncionarioDAO,Serializable{
             em.close();
         }
     }
-    
+
 }

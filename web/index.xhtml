@@ -7,32 +7,55 @@
       xmlns:p="http://primefaces.org/ui"
       >
     <h:head>
-        <title>Facelet Title</title>
+        <title>DADPKeys</title>
     </h:head>
-    <h:body style="background-color: cornflowerblue ">
-        <p:growl id="msgs" life="800"  />
-        <b:container >
-            <h:form id="formLogin"  >             
-                <h:panelGrid columns="1" class="col-md-6" style="margin-left: 30%; margin-top: 5%;" >
-                    <h4>Autenticação de Usuário</h4>
-                    <b:inputText value="#{funcControl.funcionario.login}" required="true" 
-                                 required-message="Insira seu nome de usuário"   span="8" placeholder="usuário">
-                        <f:facet name="prepend" >
-                            <b:icon name="user" />
-                          
-                        </f:facet>  
-                    </b:inputText>
-                    <b:inputSecret value="#{funcControl.funcionario.senha}" required="true" 
-                                   required-message="Insira sua sennha"   span="8" placeholder="senha">
-                        <f:facet name="prepend"  >
-                            <b:icon name="lock" />
-                           
-                        </f:facet>  
-                    </b:inputSecret>
-                    <b:commandButton action="#{funcControl.autentica}" update="formLogin msgs" value="Autenticar" />    
-                </h:panelGrid>
+    <h:body>
+
+        <b:growl id="msgs"   />
+
+        <div class="container-fluid" align="center">
+            <h:form id="formLogin" >
+                
+                <div class="row">
+                    <div class="col-md-4" ></div>
+                    <div class="col-md-4" >
+                        <h:outputText value="Autenticação de Usuário" style="color: #337ab7 ;font-size: x-large" />
+                    </div>
+                    <div class="col-md-4" ></div>
+                </div>
+                
+                <div class="row" >
+                    <div class="col-md-4" ></div>
+                    <div class="col-md-4"  >
+                        <b:inputText value="#{funcControl.funcionario.login}" required="true" 
+                                     required-message="Insira seu nome de usuário"    placeholder="usuário">
+                            <f:facet name="prepend" >
+                                <b:icon name="user" />
+                            </f:facet>  
+                        </b:inputText>
+                        <b:inputSecret value="#{funcControl.funcionario.senha}" required="true" 
+                                       required-message="Insira sua sennha"    placeholder="senha">
+                            <f:facet name="prepend"  >
+                                <b:icon name="lock" />                           
+                            </f:facet>  
+                        </b:inputSecret>                 
+                    </div>
+                    <div class="col-md-4" ></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4" ></div>
+                    <div class="col-md-4" >
+                        <b:commandButton action="#{funcControl.autentica}" update="formLogin msgs" value="Autenticar" style="width: 50%" look="primary" /> 
+                    </div>
+                    <div class="col-md-4" ></div>
+                </div>
+                
+
             </h:form>       
-        </b:container>
+        </div>
+
+
     </h:body>
 </html>
 
