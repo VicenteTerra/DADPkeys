@@ -26,26 +26,41 @@ and open the template in the editor.
               integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
-        <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css"/>
-        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+        <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" />
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" />
     </h:head>
-    <h:outputScript  >     
-        $(document).ready(function () {
-        $('#tablefunc').DataTable();
+    <h:outputScript>     
+        $(document).ready(function () { 
+        $('#tablefunc').DataTable({
+        
+        "oLanguage": {
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+            "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+            "sInfoFiltered": "(filtrado de _MAX_ registros)",
+            "sSearch": "Pesquisar: ",
+            "oPaginate": {
+                "sFirst": "Início",
+                "sPrevious": "Anterior",
+                "sNext": "Próximo",
+                "sLast": "Último"
+            } 
+            } 
+           
+        }); 
         });     
     </h:outputScript>
 
     <h:body> 
-       
+
         <b:growl id="msgs"/>
-         <ui:include src="header.xhtml" />
-         <div class ="container-fluid " >
+        <ui:include src="header.xhtml" />
+        <div class ="container-fluid " >
             <div class="nav-sidebar col-md-2" >
                 <ul class="nav nav-sidebar" > 
-                    <li class="active" ><a href="cadastroFuncionarios.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastrar Funcionário</a></li>
-                    <li class="active" ><a onclick="$('.modalPseudoClass').modal();return false;" ><span class="glyphicon glyphicon-search" ></span> Buscar Funcionário</a></li>
-
+                    <li class="active" ><a href="cadastroFuncionarios.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastrar Funcionário</a></li>                    
                 </ul>    
             </div>
 
@@ -72,22 +87,16 @@ and open the template in the editor.
                     </h:column>   
                     <h:column>
                         <h:form>
-                        <h:commandLink class="glyphicon glyphicon-remove " value="Remover" actionListener="#{funcControl.remover(func)}"/> |                 
-                        <h:commandLink class="glyphicon glyphicon-remove " value="Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Remover" actionListener="#{funcControl.remover(func)}"/> |                 
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
+
                         </h:form>
                     </h:column>
                 </h:dataTable>           
             </div> 
         </div>
 
-       
-            <b:modal id="buscafunc" title="Busca de Funcionários" styleClass="modalPseudoClass">
-                    <p>Modal body</p>
-                    <f:facet name="footer">
-                            <b:button value="close" dismiss="modal" onclick="return false;"/>
-                            <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
-                        </f:facet>
-            </b:modal>
-         
+
+
     </h:body>
 </html>

@@ -44,7 +44,7 @@ public class ControladorDeFuncionarios {
     public String autentica() {
         funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
                 funcionario.getSenha());
-
+        funcionario = new Funcionario();
         if (funcionarioSessao == null) {
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_ERROR,

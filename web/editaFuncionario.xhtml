@@ -9,15 +9,34 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-    <h:head> 
-        <title>DADP</title>       
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>DADPkeys</title>
+        <link href="resources/index.css" rel="stylesheet" media="all"/>
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
+        <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" />
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" />
     </h:head>
     <h:body>
-        
+
         <b:growl id="msgs"/>
-        <b:container class="col-md-6" style="margin-left: 20%">
+        
+        <div class="col-md-4" > </div>
+        <div  class="contairner-fluid col-md-4"  >
+            <h:outputText value="Atualização de Funcionários" style="color: #337ab7;font-size: large" />
             <h:form id="formcad">
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Nome: "  />
@@ -43,7 +62,8 @@ and open the template in the editor.
                                  action="#{funcControl.atualizar}" update="formcad msgs" />
                 <b:navLink value="Voltar" href="indexFuncionarios.xhtml" />
             </h:form>
-        </b:container>
-
+        </div>
+        <div class="col-md-4"> </div>
+        
     </h:body>
 </html>
