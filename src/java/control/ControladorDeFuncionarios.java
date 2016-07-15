@@ -34,7 +34,7 @@ public class ControladorDeFuncionarios {
     private Funcionario funcionario = new Funcionario();
     private List<Funcionario> listaFuncionarios = new ArrayList();
     private String checkpassword;
-
+    
     @PostConstruct
     public void loadFuncionarios() {
         listaFuncionarios = funcionarioDAO.todas();
