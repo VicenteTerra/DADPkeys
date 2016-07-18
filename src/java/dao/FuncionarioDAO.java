@@ -6,7 +6,6 @@
 package dao;
 
 import java.util.List;
-import model.Chave;
 import model.Funcionario;
 
 /**

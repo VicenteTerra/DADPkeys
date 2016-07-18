@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>DADPkeys</title>
+     
+    </h:head>
+    <h:body>
+      
+        <b:growl id="msgs"/>
+        
+        <div class="col-md-4" > </div>
+        <div  class="contairner-fluid col-md-4"  >
+            <h:outputText value="Cadastro de Discentes" style="color: #337ab7;font-size: large" />
+            <h:form id="formcad">
+                <b:panelGrid columns="1" >                       
+                    <h:outputText  value=" Nome: "  />
+                    <b:inputText value="#{discControl.discente.nome}" required="true" /> 
+
+                    <h:outputText  value=" E-mail: "  />
+                    <b:inputText value="#{discControl.discente.email}"  required="true" />
+
+                    <h:outputText  value=" Matrícula:"  />
+                    <b:inputText value="#{discControl.discente.matricula}" required="true"  />
+
+                    <h:outputText  value=" Telefone: "  />
+                    <b:inputText value="#{discControl.discente.telefone}"  />
+                 
+                </b:panelGrid>
+                <b:commandButton value="Cadastrar" look="primary"  
+                                 action="#{discControl.cadastrar()}" update="formcad msgs" />
+                <b:navLink value="Voltar" href="indexDiscentes.xhtml" />
+            </h:form>
+        </div>
+        <div class="col-md-4"> </div>
+    </h:body>
+</html>
+

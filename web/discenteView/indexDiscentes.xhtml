@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>DADPkeys</title>
+        <link href="resources/css/index.css" rel="stylesheet" media="all"/>
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
+        <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" />
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" />
+    </h:head>
+    <h:outputScript>     
+        $(document).ready(function () { 
+        $('#tabledisc').DataTable({
+
+        "oLanguage": {
+        "sLengthMenu": "Mostrar _MENU_ registros por página",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+        "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+        "sInfoFiltered": "(filtrado de _MAX_ registros)",
+        "sSearch": "Pesquisar: ",
+        "oPaginate": {
+        "sFirst": "Início",
+        "sPrevious": "Anterior",
+        "sNext": "Próximo",
+        "sLast": "Último"
+        } 
+        } 
+
+        }); 
+        });     
+    </h:outputScript>
+
+    <h:body> 
+        <b:growl id="msgs"/>
+        <ui:include src="header.xhtml" />
+        <div class ="container-fluid">
+
+            <div class="nav-sidebar col-md-2" >
+                <ul class="nav nav-sidebar" > 
+                    <li class="active"><a href="cadastroDiscente.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastro de Discente</a></li>             
+                </ul>    
+            </div>
+
+            <div class='col-md-10'>
+                <h:outputText value="Lista de Discentes" style="color: #337ab7;font-size: large" />
+                <h:dataTable class="table" value="#{discControl.listaDiscentes}" var="disc" id="tabledisc"  >                   
+                    <h:column> 
+                        <f:facet name="header">
+                            <h:outputText value="Nome" style="color: #337ab7" />
+                        </f:facet>
+                        <h:outputText value="#{disc.nome}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Matrícula" style="color: #337ab7" />
+                        </f:facet>
+                        <h:outputText value="#{disc.matricula}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Telefone" style="color: #337ab7" />
+                        </f:facet>  
+                        <h:outputText value="#{disc.telefone}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="E-mail" style="color: #337ab7" />
+                        </f:facet>  
+                        <h:outputText value="#{disc.email}" />
+                    </h:column> 
+                    <h:column>
+                        <h:form>
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Remover" actionListener="#{discControl.remover(disc)}"/> |                 
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Editar" actionListener="#{discControl.editar(disc)}" action="editaDiscente"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>           
+            </div> 
+        </div>
+    </h:body>
+</html>

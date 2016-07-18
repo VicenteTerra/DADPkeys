@@ -19,7 +19,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>DADPkeys</title>
-        <link href="resources/index.css" rel="stylesheet" media="all"/>
+        <link href="resources/css/index.css" rel="stylesheet" media="all"/>
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -33,34 +33,28 @@ and open the template in the editor.
     <h:body>
 
         <b:growl id="msgs"/>
-        
+       
         <div class="col-md-4" > </div>
         <div  class="contairner-fluid col-md-4"  >
-            <h:outputText value="Atualização de Funcionários" style="color: #337ab7;font-size: large" />
+            <h:outputText value="Atualização de Discentes" style="color: #337ab7;font-size: large" />
             <h:form id="formcad">
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Nome: "  />
-                    <b:inputText value="#{funcControl.funcionario.nome}" required="true" /> 
+                    <b:inputText value="#{discControl.discente.nome}" required="true" /> 
 
                     <h:outputText  value=" E-mail: "  />
-                    <b:inputText value="#{funcControl.funcionario.email}"  required="true" />
+                    <b:inputText value="#{discControl.discente.email}"  required="true" />
 
-                    <h:outputText  value=" Função: "  />
-                    <b:inputText value="#{funcControl.funcionario.funcao}"  />
+                    <h:outputText  value=" Matrícula:"  />
+                    <b:inputText value="#{discControl.discente.matricula}"  />
 
-                    <h:outputText  value=" Login: "  />
-                    <b:inputText value="#{funcControl.funcionario.login}"  required="true" />
-
-                    <h:outputText  value=" Senha: "  />
-                    <b:inputSecret value="#{funcControl.funcionario.senha}"  required="true"  />
-
-                    <h:outputText  value=" Repita a Senha: "  />
-                    <b:inputSecret value="#{funcControl.checkpassword}"  required="true"  />
-
+                    <h:outputText  value=" Telefone: "  />
+                    <b:inputText value="#{discControl.discente.telefone}"  required="true" />
+                 
                 </b:panelGrid>
                 <b:commandButton value="Atualizar" look="primary"  
-                                 action="#{funcControl.atualizar}" update="formcad msgs" />
-                <b:navLink value="Voltar" href="indexFuncionarios.xhtml" />
+                                 action="#{discControl.atualizar}" update="formcad msgs" />
+                <b:navLink value="Voltar" href="indexDiscentes.xhtml" />
             </h:form>
         </div>
         <div class="col-md-4"> </div>

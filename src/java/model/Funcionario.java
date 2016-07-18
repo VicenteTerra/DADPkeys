@@ -28,7 +28,7 @@ values(0,'admin@gmail.com','administrador','admin','ADM do Sistema','admin')
 public class Funcionario implements Serializable {
 
     public static final String POR_LOGIN_E_SENHA = "Funcionario.porLogineSenha";
-    public static final String TODOS_FUNCIONARIOS = "Usuario.todosFuncionario";
+    public static final String TODOS_FUNCIONARIOS = "Funcionario.todosFuncionarios";
 
     @Id
     @GeneratedValue
