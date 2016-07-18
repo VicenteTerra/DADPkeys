@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:derby://localhost:1527/DADP"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="java:app/DADP" object-type="user" pool-name="derby_net_DADP_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/DADPn" object-type="user" pool-name="derby_net_DADP_rootPool"/>
 </resources>

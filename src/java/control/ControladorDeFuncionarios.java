@@ -35,7 +35,7 @@ public class ControladorDeFuncionarios {
     private List<Funcionario> listaFuncionarios = new ArrayList();
     private String checkpassword;
     
-    @PostConstruct
+   @PostConstruct
     public void loadFuncionarios() {
         listaFuncionarios = funcionarioDAO.todas();
 
@@ -117,7 +117,7 @@ public class ControladorDeFuncionarios {
                     null);
             
         }
-        return "editaFuncionario.xhtml?faces-redirect=true";
+        return "funcionarioView/editaFuncionario.xhtml?faces-redirect=true";
     }
 
     public String logoff() {

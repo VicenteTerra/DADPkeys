@@ -46,7 +46,7 @@ public class ControladorDeDiscentes {
                 "Inserção bem sucedida!",
                 null);
 
-        return "cadastroDiscentes.xhtml?faces-redirect=true";
+        return "cadastroDiscente.xhtml?faces-redirect=true";
 
     }
 
