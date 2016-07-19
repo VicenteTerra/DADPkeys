@@ -31,17 +31,21 @@ and open the template in the editor.
             <h:form id="formcad">
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Tipo: "  />
-                    <b:selectMultiMenu value="#{equipControl.equipamento.tipo}" id="brandID" >
+                    <b:selectMultiMenu value="#{equipControl.equipamento.tipo}" id="tipo" required="true" requiredMessage="Tipo é um campo obrigatório !" radiobuttons="true">
                         <f:selectItem itemLabel="DataShow" itemValue="1"/>
                         <f:selectItem itemLabel="Chave" itemValue="2"/>
                         <f:selectItem itemLabel="Som" itemValue="3"/>
                     </b:selectMultiMenu>
 
-                    <h:outputText  value=" Local: "  />
-                    <b:inputText value="#{equipControl.equipamento.local}"  required="true" />
+                    <h:outputText  value=" Local : "  />
+                    <b:selectMultiMenu value="#{equipControl.equipamento.local}" id="local" required="true" requiredMessage="Local é um campo obrigatório !" radiobuttons="true" >
+                        <f:selectItem itemLabel="Pv1-101" itemValue="1101"/>
+                        <f:selectItem itemLabel="Pv1-102" itemValue="1102"/>
+                        <f:selectItem itemLabel="Pv1-103" itemValue="1103"/>
+                    </b:selectMultiMenu>
 
                     <h:outputText  value=" Descrição:"  />
-                    <b:inputText value="#{equipControl.equipamento.descricao}" required="true"  />
+                    <b:inputText value="#{equipControl.equipamento.descricao}" required="true"  requiredMessage="Descrição é um campo obrigatório !"/>
 
                 </b:panelGrid>
                 <b:commandButton value="Cadastrar" look="primary"  

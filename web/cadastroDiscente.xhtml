@@ -31,13 +31,13 @@ and open the template in the editor.
             <h:form id="formcad">
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Nome: "  />
-                    <b:inputText value="#{discControl.discente.nome}" required="true" /> 
+                    <b:inputText value="#{discControl.discente.nome}" required="true" requiredMessage="Nome é um campo obrigatório !"/> 
 
                     <h:outputText  value=" E-mail: "  />
-                    <b:inputText value="#{discControl.discente.email}"  required="true" />
+                    <b:inputText value="#{discControl.discente.email}"  required="true" requiredMessage="E-mail é um campo obrigatório !"/>
 
                     <h:outputText  value=" Matrícula:"  />
-                    <b:inputText value="#{discControl.discente.matricula}" required="true"  />
+                    <b:inputText value="#{discControl.discente.matricula}" required="true"  requiredMessage="Matrícula é um campo obrigatório !" />
 
                     <h:outputText  value=" Telefone: "  />
                     <b:inputText value="#{discControl.discente.telefone}"  />

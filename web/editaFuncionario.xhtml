@@ -32,8 +32,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
 
-        <b:growl id="msgs"/>
-        
+        <b:growl id="msgs"/>  
         <div class="col-md-4" > </div>
         <div  class="contairner-fluid col-md-4"  >
             <h:outputText value="Atualização de Funcionários" style="color: #337ab7;font-size: large" />
@@ -59,7 +58,7 @@ and open the template in the editor.
 
                 </b:panelGrid>
                 <b:commandButton value="Atualizar" look="primary"  
-                                 action="#{funcControl.atualizar}" update="formcad msgs" />
+                                 actionListener="#{funcControl.atualizar}" update="formcad msgs" action="indexFuncionarios.xhtml" />
                 <b:navLink value="Voltar" href="indexFuncionarios.xhtml" />
             </h:form>
         </div>

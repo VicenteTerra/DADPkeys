@@ -23,29 +23,32 @@ and open the template in the editor.
     <h:body>
 
         <b:growl id="msgs"/>
-
         <div class="col-md-4" > </div>
         <div  class="contairner-fluid col-md-4"  >
             <h:outputText value="Atualização de Equipamento" style="color: #337ab7;font-size: large" />
             <h:form id="formcad">
                 <b:panelGrid columns="1" >                       
                     <h:outputText  value=" Tipo: "  />
-                    
-                    <b:selectMultiMenu value="#{equipControl.equipamento.tipo}" id="brandID" >
+
+                    <b:selectMultiMenu value="#{equipControl.equipamento.tipo}" id="tipo" required="true" requiredMessage="Tipo é um campo obrigatório !" radiobuttons="true">
                         <f:selectItem itemLabel="DataShow" itemValue="1"/>
                         <f:selectItem itemLabel="Chave" itemValue="2"/>
                         <f:selectItem itemLabel="Som" itemValue="3"/>
                     </b:selectMultiMenu>
 
-                    <h:outputText  value=" Local: "  />
-                    <b:inputText value="#{equipControl.equipamento.local}"  required="true" />
+                    <h:outputText  value=" Local : "  />
+                    <b:selectMultiMenu value="#{equipControl.equipamento.local}" id="local" required="true" requiredMessage="Local é um campo obrigatório !" radiobuttons="true" >
+                        <f:selectItem itemLabel="Pv1-101" itemValue="1101"/>
+                        <f:selectItem itemLabel="Pv1-102" itemValue="1102"/>
+                        <f:selectItem itemLabel="Pv1-103" itemValue="1103"/>
+                    </b:selectMultiMenu>
 
                     <h:outputText  value=" Descrição:"  />
                     <b:inputText value="#{equipControl.equipamento.descricao}"  />
 
                 </b:panelGrid>
                 <b:commandButton value="Atualizar" look="primary"  
-                                 actionListener="#{equipControl.atualizar}" update="formcad msgs" />
+                                 actionListener="#{equipControl.atualizar}" update="formcad msgs" action="indexEquipamentos.xhtml"/>
                 <b:navLink value="Voltar" href="indexEquipamentos.xhtml" />
             </h:form>
         </div>

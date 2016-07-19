@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
@@ -55,8 +56,9 @@ and open the template in the editor.
 
     <h:body> 
 
-        <b:growl id="msgs"/>
-        <ui:include src="header.xhtml" />
+       
+      <ui:include src="header.xhtml" />
+       <b:growl id="msgs"/>
         <div class ="container-fluid " >
            
             <div class="nav-sidebar col-md-2" >
@@ -88,16 +90,12 @@ and open the template in the editor.
                     </h:column>   
                     <h:column>
                         <h:form>
-                            <h:commandLink class="glyphicon glyphicon-remove " value="Remover" actionListener="#{funcControl.remover(func)}"/> |                 
-                            <h:commandLink class="glyphicon glyphicon-remove " value="Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
-
+                            <h:commandLink class="glyphicon glyphicon-remove " title="Clique para Remover" actionListener="#{funcControl.remover(func)}" /> -                 
+                            <h:commandLink class="glyphicon glyphicon-pencil " title="Clique para Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>           
             </div> 
         </div>
-
-
-
     </h:body>
 </html>
