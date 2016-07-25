@@ -53,12 +53,12 @@ public class ControladorDeEmprestimos {
 
     public String cadastrar(Equipamento equip, Funcionario func) throws RollbackException {
         System.out.println("mat = " + buscaDisc);
-      
+
         System.out.println("mat = " + buscaDoc);
         discente = discenteDAO.buscaPorMatricula(buscaDisc);
         if (discente != null) {
             if (equip.getStatus() != 1) {
-                
+
                 emprestimo.setEquip(equip);
                 emprestimo.setDisc(discente);
                 emprestimo.setFunc(func);
@@ -92,6 +92,26 @@ public class ControladorDeEmprestimos {
 
     }
 
+    public String devolver(Equipamento equip) {
+        if (equip.getStatus() == 1) {
+            equip.setStatus(0);
+            equipamentoDAO.atualizaEquipamento(equip);
+
+            Mensagens.adicionarMensagem(
+                    FacesMessage.SEVERITY_INFO,
+                    "Devovido com Sucesso!",
+                    null);
+            return "indexEquipamentos.xhtml?faces-redirect=true";
+        } else {
+            
+             Mensagens.adicionarMensagem(
+                    FacesMessage.SEVERITY_ERROR,
+                    "Equipamente não está emprestado",
+                    null);
+            return "indexEquipamentos.xhtml?faces-redirect=true";
+        }
+    }
+
     public String remover(Emprestimo func) {
         emprestimoDAO.remover(func.getId());
         loadEmprestimos();
@@ -123,8 +143,6 @@ public class ControladorDeEmprestimos {
 
         return "editaEmprestimo.xhtml?faces-redirect=true";
     }
-
-   
 
     public Discente getDiscente() {
         return discente;
