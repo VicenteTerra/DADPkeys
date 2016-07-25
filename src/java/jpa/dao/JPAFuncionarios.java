@@ -76,7 +76,7 @@ public class JPAFuncionarios implements FuncionarioDAO, Serializable {
 
     public void atualizaFuncionario(Funcionario funcionario) {
         EntityManager em = JPAUtil.getEMF().createEntityManager();
-        System.out.println(" " + funcionario.getNome());
+      
         try {
             em.getTransaction().begin();
             em.merge(funcionario);

@@ -17,7 +17,8 @@ import javax.persistence.NamedQuery;
  * @author Vicente
  */
 
-/*insert into funcionario(id,email,funcao,login,nome,senha) 
+/*
+insert into funcionario(id,email,funcao,login,nome,senha) 
 values(0,'admin@gmail.com','administrador','admin','ADM do Sistema','admin')
 */
 @Entity

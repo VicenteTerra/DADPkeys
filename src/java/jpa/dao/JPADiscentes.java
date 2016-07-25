@@ -49,12 +49,20 @@ public class JPADiscentes implements DiscenteDAO , Serializable {
 
     public Discente buscaPorMatricula(String mat) {
         EntityManager em = JPAUtil.getEMF().createEntityManager();
+        try{
         TypedQuery<Discente> tq = em.createNamedQuery(Discente.POR_MATRICULA,
                 Discente.class);
-        tq.setParameter("matricula", mat);
-        Discente discente = tq.getSingleResult();
+        tq.setParameter("mat", mat);
+        List<Discente> discente = tq.getResultList();
+        if(discente == null || discente.isEmpty()){
+            return null;
+        }
+        return discente.get(0);
+        }
+        finally{
         em.close();
-        return discente;
+        }
+        
     }
 
     public List<Discente> todas() {

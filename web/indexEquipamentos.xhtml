@@ -77,18 +77,31 @@ and open the template in the editor.
                         <f:facet name="header">
                             <h:outputText value="Local" style="color: #337ab7" />
                         </f:facet>
-                        <h:outputText value="#{equip.local}" />
+                        <h:outputText value="PV - #{equip.local}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Descrição" style="color: #337ab7" />
-                        </f:facet>  
+                        </f:facet>
                         <h:outputText value="#{equip.descricao}" />
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Situação" style="color: #337ab7" />
+                        </f:facet>
+                        <h:outputText value="#{equip.status}" />
                     </h:column>   
                     <h:column>
                         <h:form>
-                            <h:commandLink class="glyphicon glyphicon-remove " title="Clique para Remover" actionListener="#{equipControl.remover(equip)}"/> -                
-                            <h:commandLink class="glyphicon glyphicon-pencil " title="Clique para Editar" actionListener="#{equipControl.editar(equip)}" action="editaEquipamento"/>
+                            <h:commandLink class="glyphicon glyphicon-remove btn-lg" title="Clique para Remover" 
+                                           actionListener="#{equipControl.remover(equip)}"/> |               
+                            <h:commandLink class="glyphicon glyphicon-pencil btn-lg" title="Clique para Editar" 
+                                           actionListener="#{equipControl.editar(equip)}" action="editaEquipamento"/> |
+                            <h:commandLink class="glyphicon glyphicon-circle-arrow-right btn-lg" title="Emprestimo" 
+                                           actionListener="#{equipControl.editar(equip)}" action="emprestaEquipamento"/> |
+                            <h:commandLink class="glyphicon glyphicon-circle-arrow-left btn-lg" title="Devolução" 
+                                           actionListener="#{equipControl.editar(equip)}" action="emprestaEquipamento"/>
+
 
                         </h:form>
                     </h:column>

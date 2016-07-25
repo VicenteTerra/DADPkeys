@@ -18,10 +18,10 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Equipamento.POR_TIPO , query = "select u from Equipamento u where u.tipo = :tipo "),
+    @NamedQuery(name = Equipamento.POR_TIPO, query = "select u from Equipamento u where u.tipo = :tipo "),
     @NamedQuery(name = Equipamento.TODOS_EQUIPAMENTOS, query = "select u from Equipamento u")
 })
-public class Equipamento implements Serializable{
+public class Equipamento implements Serializable {
 
     public static final String POR_TIPO = "Equipamento.porLogineSenha";
     public static final String TODOS_EQUIPAMENTOS = "Equipamento.todosFuncionario";
@@ -32,6 +32,15 @@ public class Equipamento implements Serializable{
     private String local;
     private String tipo;
     private String descricao;
+    private int status = 0;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public long getId() {
         return id;

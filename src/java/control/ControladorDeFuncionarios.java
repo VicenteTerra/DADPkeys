@@ -34,25 +34,27 @@ public class ControladorDeFuncionarios {
     private Funcionario funcionario = new Funcionario();
     private List<Funcionario> listaFuncionarios = new ArrayList();
     private String checkpassword;
-    
-   @PostConstruct
+
+    @PostConstruct
     public void loadFuncionarios() {
         listaFuncionarios = funcionarioDAO.todas();
 
     }
 
     public String autentica() {
-        funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
-                funcionario.getSenha());
-        funcionario = new Funcionario();
-        if (funcionarioSessao == null) {
-            Mensagens.adicionarMensagem(
-                    FacesMessage.SEVERITY_ERROR,
-                    "Login ou senha inválidos!",
-                    null);
-            return "index.xhtml?faces-redirect=true";
-        }
-        return "indexFuncionarios.xhtml?faces-redirect=true";
+       
+            funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
+                    funcionario.getSenha());
+            funcionario = new Funcionario();
+            if (funcionarioSessao == null) {
+                Mensagens.adicionarMensagem(
+                        FacesMessage.SEVERITY_ERROR,
+                        "Login ou senha inválidos!",
+                        null);
+                return "index.xhtml?faces-redirect=true";
+            }
+            return "indexFuncionarios.xhtml?faces-redirect=true";
+        
     }
 
     public String cadastrar() throws RollbackException {
@@ -61,7 +63,7 @@ public class ControladorDeFuncionarios {
 
             funcionarioDAO.salvar(funcionario);
             listaFuncionarios = funcionarioDAO.todas();
-            funcionario = new Funcionario(); 
+            funcionario = new Funcionario();
             checkpassword = null;
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_INFO,
@@ -108,16 +110,15 @@ public class ControladorDeFuncionarios {
                     FacesMessage.SEVERITY_INFO,
                     "Usuário Editato!",
                     null);
-            
 
         } else {
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_ERROR,
                     "As senhas não conferem!",
                     null);
-            
+
         }
-        return "funcionarioView/editaFuncionario.xhtml?faces-redirect=true";
+        return "editaFuncionario.xhtml?faces-redirect=true";
     }
 
     public String logoff() {

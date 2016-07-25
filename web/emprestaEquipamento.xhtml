@@ -26,38 +26,46 @@ and open the template in the editor.
               integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
-        <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" />
-        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" />
     </h:head>
+    <h:outputScript>
+        function tipoPessoaSel() {
+        var pf = document.getElementById("opt-disc").checked;
+        if (pf) {
+        document.getElementById("disc").style.display  = "block";
+        document.getElementById("doc").style.display = "none";
+        } else {
+        document.getElementById("disc").style.display = "none";
+        document.getElementById("doc").style.display = "block";
+        }
+        }
+    </h:outputScript>
+
     <h:body>
 
-        <b:growl id="msgs"/>
-       
+        <b:growl id="msgs"/>  
         <div class="col-md-4" > </div>
         <div  class="contairner-fluid col-md-4"  >
-            <h:outputText value="Atualização de Discentes" style="color: #337ab7;font-size: large" />
+            <h:outputText value="Atualização de Funcionários" style="color: #337ab7;font-size: large" />
             <h:form id="formcad">
-                <b:panelGrid columns="1" >                       
-                    <h:outputText  value=" Nome: "  />
-                    <b:inputText value="#{discControl.discente.nome}" required="true" /> 
+                <b:panelGrid class="container-fluid" columns="1" >      
+                    <h:outputText  value="Autor do empréstimo, #{funcControl.funcionarioSessao.nome}"  />
+                    <h:outputText  value="Emprestando , #{equipControl.equipamento.descricao} "  />
+                    <h:inputText value="#{empControl.buscaDisc}"  required="true"/>
 
-                    <h:outputText  value=" E-mail: "  />
-                    <b:inputText value="#{discControl.discente.email}"  required="true" />
 
-                    <h:outputText  value=" Matrícula:"  />
-                    <b:inputText value="#{discControl.discente.matricula}"  />
+                    <h:outputText value="Data do empréstimo :" />
+                    <b:dateTimePicker id="cdate3" mode="toggle-icon" showWeek="true" value="#{empControl.emprestimo.data}"
+                                      required="true"/>
 
-                    <h:outputText  value=" Telefone: "  />
-                    <b:inputText value="#{discControl.discente.telefone}"  required="true" />
-                 
                 </b:panelGrid>
-                <b:commandButton value="Atualizar" look="primary"  
-                                 actionListener="#{discControl.atualizar}" update="formcad msgs" action="indexDiscentes.xhtml"/>
-                <b:navLink value="Voltar" href="indexDiscentes.xhtml" />
+                <b:commandButton value="Emprestar" look="primary"  
+                                 actionListener="#{empControl.cadastrar(equipControl.equipamento, funcControl.funcionarioSessao)}" action="#{equipControl.loadEquipamentos()}" update="formcad msgs"/>
+                <b:navLink value="Voltar" href="indexEquipamentos.xhtml" />
+
             </h:form>
         </div>
         <div class="col-md-4"> </div>
-        
+
     </h:body>
+
 </html>
