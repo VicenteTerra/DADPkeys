@@ -27,7 +27,7 @@ and open the template in the editor.
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
                 crossorigin="anonymous"/>
-      
+
     </h:head>
     <h:outputScript>
         function tipoPessoaSel() {
@@ -41,7 +41,16 @@ and open the template in the editor.
         }
         }
     </h:outputScript>
-
+    <script>
+        function bloqueio(id) {
+           
+            if (document.getElementById(id).style.display == "none") {
+                document.getElementById(id).style.display = "block";
+            } else {
+                document.getElementById(id).style.display = "none";
+            }
+        }
+    </script>
     <h:body>
 
         <b:growl id="msgs"/>  
@@ -52,9 +61,18 @@ and open the template in the editor.
                 <b:panelGrid class="container-fluid" columns="1" >      
                     <h:outputText  value="Autor do empréstimo, #{funcControl.funcionarioSessao.nome}"  />
                     <h:outputText  value="Emprestando , #{equipControl.equipamento.descricao} "  />
-                    
+
                     <h:outputText  value="Matrícula do discente:"  />
                     <b:inputText value="#{empControl.buscaDisc}"  required="true"/>
+                    <h:selectBooleanCheckbox id="cbk1" onclick="bloqueio('divdisc')" />Docente
+                    <h:selectBooleanCheckbox id="cbk2" onclick="bloqueio('divdoc')" /> Discente
+                    <div id="divdisc" style="display: none" > 
+                        Digite a Matrícula de Discente: <input type="text"  value="#{empControl.buscaDisc}"/>                                            
+                    </div>
+                    <div id="divdoc" style="display: none" > 
+                        Digite a Matrícula do Discente Responsável: <input type="text"  value="#{empControl.buscaDisc}"/>
+                        Digite a Matrícula do Docente: <input type="text"  value="#{empControl.buscaDoc}"/>   
+                    </div>
 
 
                     <h:outputText id="tx" value="Data do empréstimo :" />
