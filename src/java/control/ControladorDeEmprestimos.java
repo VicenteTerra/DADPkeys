@@ -41,8 +41,10 @@ public class ControladorDeEmprestimos {
     private final EquipamentoDAO equipamentoDAO = new JPAEquipamentos();
     private Emprestimo emprestimo = new Emprestimo();
     private List<Emprestimo> listaEmprestimos = new ArrayList();
-    private String buscaDisc;
-    private String buscaDoc;
+    private String buscaMat;
+    private String buscaMatResp;
+    private String buscaTipo;
+
     private Discente discente = new Discente();
 
     @PostConstruct
@@ -52,29 +54,30 @@ public class ControladorDeEmprestimos {
     }
 
     public String cadastrar(Equipamento equip, Funcionario func) throws RollbackException {
-        System.out.println("mat = " + buscaDisc);
 
-        System.out.println("mat = " + buscaDoc);
-        discente = discenteDAO.buscaPorMatricula(buscaDisc);
         if (discente != null) {
             if (equip.getStatus() != 1) {
+                if (buscaTipo.equals("doc")) {
 
-                emprestimo.setEquip(equip);
-                emprestimo.setDisc(discente);
-                emprestimo.setFunc(func);
-                emprestimoDAO.salvar(emprestimo);
-                equip.setStatus(1);
-                equipamentoDAO.atualizaEquipamento(equip);
+                } else if (buscaTipo.equals("disc")) {
+                    discente = discenteDAO.buscaPorMatricula(buscaMat);
+                    emprestimo.setEquip(equip);
+                    emprestimo.setDisc(discente);
+                    emprestimo.setFunc(func);
+                    emprestimoDAO.salvar(emprestimo);
+                    equip.setStatus(1);
+                    equipamentoDAO.atualizaEquipamento(equip);
 
-                // listaEmprestimos = emprestimoDAO.todas();
-                emprestimo = new Emprestimo();
+                    // listaEmprestimos = emprestimoDAO.todas();
+                    emprestimo = new Emprestimo();
 
-                Mensagens.adicionarMensagem(
-                        FacesMessage.SEVERITY_INFO,
-                        "Inserção bem sucedida!",
-                        null);
+                    Mensagens.adicionarMensagem(
+                            FacesMessage.SEVERITY_INFO,
+                            "Epréstimo bem sucedido!",
+                            null);
 
-                return "indexEquipamentos.xhtml?faces-redirect=true";
+                    return "indexEquipamentos.xhtml?faces-redirect=true";
+                }
             } else {
                 Mensagens.adicionarMensagem(
                         FacesMessage.SEVERITY_ERROR,
@@ -89,7 +92,7 @@ public class ControladorDeEmprestimos {
                     null);
             return "indexEquipamentos.xhtml?faces-redirect=true";
         }
-
+        return "";
     }
 
     public String devolver(Equipamento equip) {
@@ -103,8 +106,8 @@ public class ControladorDeEmprestimos {
                     null);
             return "indexEquipamentos.xhtml?faces-redirect=true";
         } else {
-            
-             Mensagens.adicionarMensagem(
+
+            Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_ERROR,
                     "Equipamente não está emprestado",
                     null);
@@ -144,6 +147,14 @@ public class ControladorDeEmprestimos {
         return "editaEmprestimo.xhtml?faces-redirect=true";
     }
 
+    public String getBuscaMatResp() {
+        return buscaMatResp;
+    }
+
+    public void setBuscaMatResp(String buscaMatResp) {
+        this.buscaMatResp = buscaMatResp;
+    }
+
     public Discente getDiscente() {
         return discente;
     }
@@ -152,20 +163,20 @@ public class ControladorDeEmprestimos {
         this.discente = discente;
     }
 
-    public String getBuscaDisc() {
-        return buscaDisc;
+    public String getBuscaMat() {
+        return buscaMat;
     }
 
-    public void setBuscaDisc(String buscaDisc) {
-        this.buscaDisc = buscaDisc;
+    public void setBuscaMat(String buscaMat) {
+        this.buscaMat = buscaMat;
     }
 
-    public String getBuscaDoc() {
-        return buscaDoc;
+    public String getBuscaTipo() {
+        return buscaTipo;
     }
 
-    public void setBuscaDoc(String buscaDoc) {
-        this.buscaDoc = buscaDoc;
+    public void setBuscaTipo(String buscaTipo) {
+        this.buscaTipo = buscaTipo;
     }
 
     public Emprestimo getEmprestimo() {

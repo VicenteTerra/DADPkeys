@@ -19,15 +19,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>DADPkeys</title>
-        <link href="resources/css/index.css" rel="stylesheet" media="all"/>
-        <!-- Bootstrap -->
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-                crossorigin="anonymous"/>
-
+      
     </h:head>
     <h:outputScript>
         function tipoPessoaSel() {
@@ -43,37 +35,35 @@ and open the template in the editor.
     </h:outputScript>
     <script>
         function bloqueio(id) {
-           
+
             if (document.getElementById(id).style.display == "none") {
                 document.getElementById(id).style.display = "block";
             } else {
                 document.getElementById(id).style.display = "none";
             }
         }
+
     </script>
     <h:body>
 
         <b:growl id="msgs"/>  
         <div class="col-md-4" > </div>
         <div  class="contairner-fluid col-md-4"  >
-            <h:outputText value="Atualização de Funcionários" style="color: #337ab7;font-size: large" />
+            <h:outputText value="Empréstimo de Equipamento" style="color: #337ab7;font-size: large" />
             <h:form id="formcad">
                 <b:panelGrid class="container-fluid" columns="1" >      
                     <h:outputText  value="Autor do empréstimo, #{funcControl.funcionarioSessao.nome}"  />
                     <h:outputText  value="Emprestando , #{equipControl.equipamento.descricao} "  />
 
-                    <h:outputText  value="Matrícula do discente:"  />
-                    <b:inputText value="#{empControl.buscaDisc}"  required="true"/>
-                    <h:selectBooleanCheckbox id="cbk1" onclick="bloqueio('divdisc')" />Docente
-                    <h:selectBooleanCheckbox id="cbk2" onclick="bloqueio('divdoc')" /> Discente
-                    <div id="divdisc" style="display: none" > 
-                        Digite a Matrícula de Discente: <input type="text"  value="#{empControl.buscaDisc}"/>                                            
-                    </div>
-                    <div id="divdoc" style="display: none" > 
-                        Digite a Matrícula do Discente Responsável: <input type="text"  value="#{empControl.buscaDisc}"/>
-                        Digite a Matrícula do Docente: <input type="text"  value="#{empControl.buscaDoc}"/>   
-                    </div>
+                    <b:selectMultiMenu value="#{empControl.buscaTipo}" id="local" required="true" requiredMessage="Local é um campo obrigatório !" radiobuttons="true" >
+                        <f:selectItem itemLabel="Docente" itemValue="doc"/>
+                        <f:selectItem itemLabel="Discente" itemValue="disc"/>                      
+                    </b:selectMultiMenu>
 
+                    <h:outputText  value="Digite o número de Matrícula :"  />
+                    <h:inputText value="#{empControl.buscaMat}" />
+                    <h:outputText  value="Digite o número de Matrícula Do responsável no caso de Discente :"  />
+                    <h:inputText value="#{empControl.buscaMatResp}" />
 
                     <h:outputText id="tx" value="Data do empréstimo :" />
                     <b:dateTimePicker id="cdate3" mode="toggle-icon" showWeek="true" value="#{empControl.emprestimo.data}"
