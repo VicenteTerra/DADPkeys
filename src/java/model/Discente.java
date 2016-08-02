@@ -34,7 +34,7 @@ public class Discente implements Serializable{
     private String email;
     private String telefone;
     private String matricula;
-    private List<Docente> docenteResp;
+   // private List<Docente> docenteResp;
 
     public long getId() {
         return id;
@@ -76,12 +76,6 @@ public class Discente implements Serializable{
         this.matricula = matricula;
     }
 
-    public List<Docente> getDocenteResp() {
-        return docenteResp;
-    }
-
-    public void setDocenteResp(List<Docente> docenteResp) {
-        this.docenteResp = docenteResp;
-    }
+    
 
 }

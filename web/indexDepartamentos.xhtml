@@ -26,13 +26,13 @@ and open the template in the editor.
               integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
-        <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
+        <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css" />
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" />
     </h:head>
     <h:outputScript>     
         $(document).ready(function () { 
-        $('#tabledoc').DataTable({
+        $('#tabledep').DataTable({
 
         "oLanguage": {
         "sLengthMenu": "Mostrar _MENU_ registros por página",
@@ -60,15 +60,15 @@ and open the template in the editor.
 
             <div class="nav-sidebar col-md-2" >
                 <ul class="nav nav-sidebar" > 
-                    <li class="active"><a href="cadastroDocentes.xhtml"> <span class="glyphicon glyphicon-user" ></span> Novo Docente</a></li>             
+                    <li class="active"><a href="cadastroDepartamentos.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastro de Docente</a></li>             
                 </ul>    
             </div>
             <div class='col-md-10'>
-                <h:outputText value="Lista de Docentes" style="color: #337ab7;font-size: large" />
-                <h:dataTable class="tabledoc" value="#{docControl.listaDocentes}" var="doc" id="tabledoc"  >                   
+                <h:outputText value="Lista de Departamentos" style="color: #337ab7;font-size: large" />
+                <h:dataTable class="table" value="#{docControl.listaDocentes}" var="doc" id="tabledoc"  >                   
                     <h:column> 
                         <f:facet name="header">
-                            <h:outputText value="Matricula" style="color: #337ab7" />
+                            <h:outputText value="Matrícula" style="color: #337ab7" />
                         </f:facet>
                         <h:outputText value="#{doc.matricula}" />
                     </h:column>
@@ -83,24 +83,24 @@ and open the template in the editor.
                             <h:outputText value="Assinatura" style="color: #337ab7" />
                         </f:facet>  
                         <h:outputText value="#{doc.assinatura}" />
-                    </h:column>   
-                     <h:column>
+                    </h:column> 
+                    <h:column>
                         <f:facet name="header">
-                            <h:outputText value="telefone" style="color: #337ab7" />
+                            <h:outputText value="Telefone" style="color: #337ab7" />
                         </f:facet>  
                         <h:outputText value="#{doc.telefone}" />
-                    </h:column> 
-                     <h:column>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="Departamento" style="color: #337ab7" />
                         </f:facet>  
                         <h:outputText value="#{doc.dept.descricao}" />
                     </h:column> 
-                     
                     <h:column>
                         <h:form>
-                            <h:commandLink class="glyphicon glyphicon-remove " title="Clique para Remover" actionListener="#{docControl.remover(doc)}"/> |              
-                            <h:commandLink class="glyphicon glyphicon-pencil "  title= "Clique para Editar" actionListener="#{docControl.alterarDocente(doc)}" action="editaDocente"/>
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Remover" actionListener="#{docControl.remover(doc)}"/> |                 
+                            <h:commandLink class="glyphicon glyphicon-remove " value="Editar" actionListener="#{docControl.editar(doc)}" action="editaFuncionario"/>
+
                         </h:form>
                     </h:column>
                 </h:dataTable>           

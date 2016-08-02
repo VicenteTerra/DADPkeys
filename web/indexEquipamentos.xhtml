@@ -60,7 +60,7 @@ and open the template in the editor.
 
             <div class="nav-sidebar col-md-2" >
                 <ul class="nav nav-sidebar" > 
-                    <li class="active"><a href="cadastroEquipamentos.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastro de Equipamento</a></li>             
+                    <li class="active"><a href="cadastroEquipamentos.xhtml"> <span class="glyphicon glyphicon-user" ></span> Novo Equipamento</a></li>             
                 </ul>    
             </div>
             <div class='col-md-10'>
@@ -92,13 +92,13 @@ and open the template in the editor.
                     </h:column>   
                     <h:column>
                         <h:form  >
-                            <h:commandLink class="glyphicon glyphicon-remove btn-lg" title="Clique para Remover" 
+                            <h:commandLink class="glyphicon glyphicon-remove" title="Clique para Remover" 
                                            actionListener="#{equipControl.remover(equip)}"/> |               
-                            <h:commandLink class="glyphicon glyphicon-pencil btn-lg" title="Clique para Editar" 
+                            <h:commandLink class="glyphicon glyphicon-pencil " title="Clique para Editar" 
                                            actionListener="#{equipControl.editar(equip)}" action="editaEquipamento"/> |
-                            <h:commandLink class="glyphicon glyphicon-circle-arrow-right btn-lg" title="Clique para Emprestar" 
+                            <h:commandLink class="glyphicon glyphicon-circle-arrow-right" title="Clique para Emprestar" 
                                            actionListener="#{equipControl.editar(equip)}" action="emprestaEquipamento"/> |
-                            <h:commandLink class="glyphicon glyphicon-circle-arrow-left btn-lg" title="Clique para Devolver" 
+                            <h:commandLink class="glyphicon glyphicon-circle-arrow-left " title="Clique para Devolver" 
                                            actionListener="#{empControl.devolver(equip)}" action="#{empControl.loadEmprestimos()}" />
                         </h:form>
                     </h:column>

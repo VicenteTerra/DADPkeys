@@ -63,7 +63,7 @@ and open the template in the editor.
            
             <div class="nav-sidebar col-md-2" >
                 <ul class="nav nav-sidebar" > 
-                    <li class="active" ><a href="cadastroFuncionarios.xhtml"> <span class="glyphicon glyphicon-user" ></span> Cadastrar Funcionário</a></li>                    
+                    <li class="active" ><a href="cadastroFuncionarios.xhtml"> <span class="glyphicon glyphicon-user" ></span> Novo Funcionário</a></li>                    
                 </ul>    
             </div>
 
@@ -90,8 +90,8 @@ and open the template in the editor.
                     </h:column>   
                     <h:column>
                         <h:form>
-                            <h:commandLink class="glyphicon glyphicon-remove btn-lg" title="Clique para Remover" actionListener="#{funcControl.remover(func)}" /> |                
-                            <h:commandLink class="glyphicon glyphicon-pencil btn-lg" title="Clique para Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
+                            <h:commandLink class="glyphicon glyphicon-remove " title="Clique para Remover" actionListener="#{funcControl.remover(func)}" /> |                
+                            <h:commandLink class="glyphicon glyphicon-pencil " title="Clique para Editar" actionListener="#{funcControl.editar(func)}" action="editaFuncionario"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>           

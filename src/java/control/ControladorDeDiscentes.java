@@ -6,6 +6,7 @@
 package control;
 
 import dao.DiscenteDAO;
+import dao.DocenteDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.RollbackException;
 import jpa.dao.JPADiscentes;
+import jpa.dao.JPADocentes;
 import model.Discente;
 import utill.Mensagens;
 
@@ -26,8 +28,10 @@ import utill.Mensagens;
 public class ControladorDeDiscentes {
 
     private final DiscenteDAO discenteDAO = new JPADiscentes();
+    private final DocenteDAO docenteDAO = new JPADocentes();
     private Discente discente = new Discente();
     private List<Discente> listaDiscentes = new ArrayList();
+    private String matResp;
 
     @PostConstruct
     public void loadDiscentes() {
@@ -36,7 +40,7 @@ public class ControladorDeDiscentes {
     }
 
     public String cadastrar() throws RollbackException {
-
+     
         discenteDAO.salvar(discente);
         listaDiscentes = discenteDAO.todas();
         discente = new Discente();
@@ -64,8 +68,8 @@ public class ControladorDeDiscentes {
     }
 
     public void editar(Discente disc) {
-           
-        System.out.println("ID no ante edit" + discente.getId());   
+
+        System.out.println("ID no ante edit" + discente.getId());
         discente = discenteDAO.busca(disc.getId());
         System.out.println("ID no edit" + discente.getId());
         // return "editaDiscente.xhtml?faces-redirect=true";
@@ -83,6 +87,14 @@ public class ControladorDeDiscentes {
                 null);
 
         return "editaDiscente.xhtml?faces-redirect=true";
+    }
+
+    public String getMatResp() {
+        return matResp;
+    }
+
+    public void setMatResp(String matResp) {
+        this.matResp = matResp;
     }
 
     public Discente getDiscente() {

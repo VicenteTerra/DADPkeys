@@ -4,11 +4,83 @@
  * and open the template in the editor.
  */
 package model;
+import java.io.Serializable;
+import java.lang.annotation.Target;
+import javax.persistence.*;
+
 
 /**
  *
- * @author Tecnologia
+ * @author Pedro
  */
-class Docente {
+@Entity
+@NamedQueries({
+    @NamedQuery(name = Docente.LISTA_CAMPOS, query = "select u from Docente u where u.id = :id"),
+    @NamedQuery(name = Docente.TODOS_DOCENTES, query = "select u from Docente u"),
+    @NamedQuery(name = Docente.POR_MATRICULA, query = "select u from Docente u where u.matricula  = :mat ")
+})
+public class Docente implements Serializable{
+   public static final String LISTA_CAMPOS = "Docente.ListaCampos";
+   public static final String TODOS_DOCENTES = "Docente.todosDocentes";
+     public static final String POR_MATRICULA = "Docente.porMatricula";
+    @Id
+    @GeneratedValue
+    private long id;
+    @Lob
+    private String matricula;
+    @Lob
+    private String nome;
+    @Lob
+    private String assinatura;
+    private String telefone;        
+    @ManyToOne
+    private Departamento dept;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getAssinatura() {
+        return assinatura;
+    }
+
+    public void setAssinatura(String assinatura) {
+        this.assinatura = assinatura;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    public String getDepartamento(){
+        return getDept().getDescricao();
+    }
+
+    public Departamento getDept() {
+        return dept;
+    }
+
+    public void setDept(Departamento dept) {
+        this.dept = dept;
+    }
     
 }

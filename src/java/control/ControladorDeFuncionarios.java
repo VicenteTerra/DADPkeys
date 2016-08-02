@@ -42,10 +42,11 @@ public class ControladorDeFuncionarios {
     }
 
     public String autentica() {
-       
-            funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
-                    funcionario.getSenha());
-            funcionario = new Funcionario();
+
+        funcionarioSessao = funcionarioDAO.autenticaMatriculaeSenha(funcionario.getLogin(),
+                funcionario.getSenha());
+        funcionario = new Funcionario();
+      
             if (funcionarioSessao == null) {
                 Mensagens.adicionarMensagem(
                         FacesMessage.SEVERITY_ERROR,
@@ -55,6 +56,7 @@ public class ControladorDeFuncionarios {
             }
             return "indexFuncionarios.xhtml?faces-redirect=true";
         
+
     }
 
     public String cadastrar() throws RollbackException {
