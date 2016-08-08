@@ -6,7 +6,10 @@
 package model;
 import java.io.Serializable;
 import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
+
 
 
 /**
@@ -26,15 +29,15 @@ public class Docente implements Serializable{
     @Id
     @GeneratedValue
     private long id;
-    @Lob
+    @Column(unique = true)
     private String matricula;
-    @Lob
     private String nome;
-    @Lob
     private String assinatura;
     private String telefone;        
     @ManyToOne
     private Departamento dept;
+    @ManyToMany
+    private List<Discente> listaDiscentes = new ArrayList();
 
     public long getId() {
         return id;
@@ -82,5 +85,15 @@ public class Docente implements Serializable{
     public void setDept(Departamento dept) {
         this.dept = dept;
     }
+
+    public List<Discente> getListaDiscentes() {
+        return listaDiscentes;
+    }
+
+    public void setListaDiscentes(List<Discente> listaDiscentes) {
+        this.listaDiscentes = listaDiscentes;
+    }
+
+   
     
 }

@@ -5,18 +5,18 @@
  */
 package control;
 
-
+import dao.DiscenteDAO;
 import dao.DocenteDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
+import jpa.dao.JPADiscentes;
 import jpa.dao.JPADocentes;
+import model.Discente;
 import model.Docente;
 import utill.Mensagens;
-
-
 
 /**
  *
@@ -25,32 +25,56 @@ import utill.Mensagens;
 @ManagedBean(name = "docControl")
 @SessionScoped
 public class ControladorDeDocentes {
-    private  final DocenteDAO docenteDAO = new JPADocentes();
+
+    private final DocenteDAO docenteDAO = new JPADocentes();
+    public final DiscenteDAO discenteDAO = new JPADiscentes();
     private final Docente docentesessao = null;
-    private  Docente docente;
+    private Docente docente;
     private List listaDocentes = new ArrayList();
+    private List discAutorizados = new ArrayList();
+    private String idDisc;
 
     public ControladorDeDocentes() {
         this.docente = new Docente();
     }
-    
+
     @PostConstruct
-    public void loadDocentes(){
+    public void loadDocentes() {
         listaDocentes = docenteDAO.todos();
-                
-        
     }
-    
-    public void cadastrar(){
+
+    public void autorizaDisc() {
+        Discente disc = new Discente();
+        disc = discenteDAO.buscaPorMatricula(idDisc);
+
+        if (disc != null) {
+            docente.getListaDiscentes().add(disc);
+            docenteDAO.atualizaDocente(docente);
+            Mensagens.adicionarMensagem(
+                    FacesMessage.SEVERITY_INFO,
+                    "Discente Autorizado!",
+                    null);
+        } else {
+            Mensagens.adicionarMensagem(
+                    FacesMessage.SEVERITY_ERROR,
+                    "Não Existe Discente Com a Matrícula Informada!",
+                    null);
+        }
+
+    }
+
+    public void cadastrar() {
         docenteDAO.salvar(docente);
         listaDocentes = docenteDAO.todos();
         docente = new Docente();
     }
-    public void alterarDocente(Docente doc){
+
+    public void alterarDocente(Docente doc) {
         docente = docenteDAO.busca(doc.getId());
-  }
-    public String remover(Docente doc){
-      docenteDAO.remover(doc.getId());
+    }
+
+    public String remover(Docente doc) {
+        docenteDAO.remover(doc.getId());
         loadDocentes();
 
         Mensagens.adicionarMensagem(
@@ -61,21 +85,19 @@ public class ControladorDeDocentes {
         return "indexDocentes.xhtml?faces-redirect=true";
 
     }
-    public Docente detalharDocente(Long id){
+
+    public Docente detalharDocente(Long id) {
         Docente doc = docenteDAO.detalhar(id);
         return doc;
-        
+
     }
-    public void atualizar(){
+
+    public void atualizar() {
         docenteDAO.atualizaDocente(docente);
         docente = new Docente();
-        
+
     }
-    
-    
-    
-    
-    
+
     public List getListaDocentes() {
         return listaDocentes;
     }
@@ -94,6 +116,22 @@ public class ControladorDeDocentes {
 
     public Docente getDocente() {
         return docente;
+    }
+
+    public List getDiscAutorizados() {
+        return discAutorizados;
+    }
+
+    public void setDiscAutorizados(List discAutorizados) {
+        this.discAutorizados = discAutorizados;
+    }
+
+    public String getIdDisc() {
+        return idDisc;
+    }
+
+    public void setIdDisc(String idDisc) {
+        this.idDisc = idDisc;
     }
 
 }
