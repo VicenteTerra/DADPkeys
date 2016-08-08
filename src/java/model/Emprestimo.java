@@ -35,8 +35,8 @@ public class Emprestimo implements Serializable {
     private Funcionario func;
     @ManyToOne
     private Equipamento equip;
-   /* @OneToOne
-    private Docente doc;*/
+    @ManyToOne
+    private Docente doc;
     @ManyToOne
     private Discente disc;
     private Date data;
@@ -65,13 +65,13 @@ public class Emprestimo implements Serializable {
         this.equip = equip;
     }
 
-   /* public Docente getDoc() {
+    public Docente getDoc() {
         return doc;
     }
 
     public void setDoc(Docente doc) {
         this.doc = doc;
-    }*/
+    }
 
     public Discente getDisc() {
         return disc;

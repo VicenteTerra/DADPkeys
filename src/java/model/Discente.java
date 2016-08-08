@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,6 +34,7 @@ public class Discente implements Serializable{
     private String nome;
     private String email;
     private String telefone;
+    @Column(unique = true)
     private String matricula;
    // private List<Docente> docenteResp;
 

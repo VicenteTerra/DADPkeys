@@ -6,6 +6,7 @@
 package control;
 
 import dao.DiscenteDAO;
+import dao.DocenteDAO;
 import dao.EmprestimoDAO;
 import dao.EquipamentoDAO;
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ import javax.faces.context.FacesContext;
 import javax.persistence.RollbackException;
 import javax.servlet.http.HttpSession;
 import jpa.dao.JPADiscentes;
+import jpa.dao.JPADocentes;
 import jpa.dao.JPAEmprestimos;
 import jpa.dao.JPAEquipamentos;
 import model.Discente;
+import model.Docente;
 import model.Emprestimo;
 import model.Equipamento;
 import model.Funcionario;
@@ -36,15 +39,14 @@ import utill.Mensagens;
 public class ControladorDeEmprestimos {
 
     private final EmprestimoDAO emprestimoDAO = new JPAEmprestimos();
-    //private final DocenteDAO docenteDAO = new JPADocentes();
+    private final DocenteDAO docenteDAO = new JPADocentes();
     private final DiscenteDAO discenteDAO = new JPADiscentes();
     private final EquipamentoDAO equipamentoDAO = new JPAEquipamentos();
     private Emprestimo emprestimo = new Emprestimo();
     private List<Emprestimo> listaEmprestimos = new ArrayList();
-    private String buscaMat;
-    private String buscaMatResp;
-    private String buscaTipo;
-
+    private String buscaMat = new String();
+    private String buscaMatResp = new String();
+    private String buscaTipo = new String();
     private Discente discente = new Discente();
 
     @PostConstruct
@@ -57,13 +59,42 @@ public class ControladorDeEmprestimos {
 
         if (discente != null) {
             if (equip.getStatus() != 1) {
-                if (buscaTipo.equals("doc")) {
+                if (buscaTipo.equals("disc")) {
+                    Docente docente = docenteDAO.buscaPorMatricula(buscaMatResp);
+                    for (Discente a : docente.getListaDiscentes()) {
+                        if (a.getMatricula().equals(buscaMat)) {
 
-                } else if (buscaTipo.equals("disc")) {
-                    discente = discenteDAO.buscaPorMatricula(buscaMat);
+                            emprestimo.setEquip(equip);
+                            emprestimo.setDisc(a);
+                            emprestimo.setFunc(func);
+                            emprestimoDAO.salvar(emprestimo);
+                            equip.setStatus(1);
+                            equipamentoDAO.atualizaEquipamento(equip);
+
+                            emprestimo = new Emprestimo();
+
+                            Mensagens.adicionarMensagem(
+                                    FacesMessage.SEVERITY_INFO,
+                                    "Epréstimo bem sucedido!",
+                                    null);
+
+                            return "indexEquipamentos.xhtml?faces-redirect=true";
+                        }else{
+                            Mensagens.adicionarMensagem(
+                                    FacesMessage.SEVERITY_FATAL,
+                                    "Discente não autorizado pelo Docente especificado!",
+                                    null);
+                            
+                            return "emprestaEquipamento.xhtml?faces-redirect=true";
+                        }
+                    }
+                }
+                if (buscaTipo.equals("doc")) {
+                
+                    Docente docente = docenteDAO.buscaPorMatricula(buscaMat);
                     emprestimo.setEquip(equip);
-                    emprestimo.setDisc(discente);
                     emprestimo.setFunc(func);
+                    emprestimo.setDoc(docente);
                     emprestimoDAO.salvar(emprestimo);
                     equip.setStatus(1);
                     equipamentoDAO.atualizaEquipamento(equip);
@@ -102,7 +133,7 @@ public class ControladorDeEmprestimos {
 
             Mensagens.adicionarMensagem(
                     FacesMessage.SEVERITY_INFO,
-                    "Devovido com Sucesso!",
+                    "Devolvido com Sucesso!",
                     null);
             return "indexEquipamentos.xhtml?faces-redirect=true";
         } else {
