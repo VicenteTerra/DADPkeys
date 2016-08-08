@@ -6,7 +6,6 @@
 package dao;
 
 import java.util.List;
-import model.Discente;
 import model.Docente;
 
 /**
@@ -20,6 +19,7 @@ public interface DocenteDAO {
     public Docente detalhar(Long id);
     public  List<Docente> todos();
     public Docente busca(Long id);
-    public Docente buscaPorMatricula(String mat);            
+    public Docente buscaPorMatricula(String mat);
+            
     
 }

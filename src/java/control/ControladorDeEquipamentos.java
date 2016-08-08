@@ -17,7 +17,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.RollbackException;
 import javax.servlet.http.HttpSession;
 import jpa.dao.JPAEquipamentos;
-import model.Emprestimo;
 import model.Equipamento;
 import utill.Mensagens;
 
@@ -36,7 +35,7 @@ public class ControladorDeEquipamentos {
     @PostConstruct
     public void loadEquipamentos() {
         listaEquipamentos = equipamentoDAO.todas();
-        equipamento = new Equipamento();
+
     }
 
     public String cadastrar() throws RollbackException {
@@ -67,8 +66,8 @@ public class ControladorDeEquipamentos {
 
     }
 
-    public void editar(Equipamento equip) {
-        equipamento = equipamentoDAO.busca(equip.getId());
+    public void editar(Equipamento func) {
+        equipamento = equipamentoDAO.busca(func.getId());
         // return "editaEquipamento.xhtml?faces-redirect=true";
     }
 

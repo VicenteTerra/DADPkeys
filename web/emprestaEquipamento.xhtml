@@ -19,10 +19,31 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>DADPkeys</title>
-        
-
-
+      
     </h:head>
+    <h:outputScript>
+        function tipoPessoaSel() {
+        var pf = document.getElementById("opt-disc").checked;
+        if (pf) {
+        document.getElementById("disc").style.display  = "block";
+        document.getElementById("doc").style.display = "none";
+        } else {
+        document.getElementById("disc").style.display = "none";
+        document.getElementById("doc").style.display = "block";
+        }
+        }
+    </h:outputScript>
+    <script>
+        function bloqueio(id) {
+
+            if (document.getElementById(id).style.display == "none") {
+                document.getElementById(id).style.display = "block";
+            } else {
+                document.getElementById(id).style.display = "none";
+            }
+        }
+
+    </script>
     <h:body>
 
         <b:growl id="msgs"/>  
@@ -39,14 +60,14 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Discente" itemValue="disc"/>                      
                     </b:selectMultiMenu>
 
-                    <h:outputText  value="Digite o número de Matrícula :"   />
-                    <b:inputText value="#{empControl.buscaMat}" required="true" requiredMessage="Matrícula é obrigatória !"/>
-                    <h:outputText  value="Digite o número de Matrícula Do responsável (no caso de discente) :"  />
-                    <b:inputText value="#{empControl.buscaMatResp}" />
+                    <h:outputText  value="Digite o número de Matrícula :"  />
+                    <h:inputText value="#{empControl.buscaMat}" />
+                    <h:outputText  value="Digite o número de Matrícula Do responsável no caso de Discente :"  />
+                    <h:inputText value="#{empControl.buscaMatResp}" />
 
                     <h:outputText id="tx" value="Data do empréstimo :" />
-                    <b:datepicker id="cdate3" mode="toggle-icon" showWeek="true" value="#{empControl.emprestimo.data}"
-                                  />
+                    <b:dateTimePicker id="cdate3" mode="toggle-icon" showWeek="true" value="#{empControl.emprestimo.data}"
+                                      required="true"/>
                 </b:panelGrid>
                 <b:commandButton value="Emprestar" look="primary"  
                                  actionListener="#{empControl.cadastrar(equipControl.equipamento, funcControl.funcionarioSessao)}" action="#{equipControl.loadEquipamentos()}" update="formcad msgs"/>

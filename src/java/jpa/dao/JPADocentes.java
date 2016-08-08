@@ -42,7 +42,7 @@ public class JPADocentes implements DocenteDAO, Serializable {
         }
         em.close();
     }
-   
+
     /**
      *
      * @return
@@ -93,7 +93,6 @@ public class JPADocentes implements DocenteDAO, Serializable {
         return docente;
     }
 
-    @Override
     public Docente buscaPorMatricula(String mat) {
         EntityManager em = JPAUtil.getEMF().createEntityManager();
         try {

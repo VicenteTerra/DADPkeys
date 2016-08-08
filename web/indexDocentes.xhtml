@@ -84,24 +84,23 @@ and open the template in the editor.
                         </f:facet>  
                         <h:outputText value="#{doc.assinatura}" />
                     </h:column>   
-                    <h:column>
+                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="telefone" style="color: #337ab7" />
                         </f:facet>  
                         <h:outputText value="#{doc.telefone}" />
                     </h:column> 
-                    <h:column>
+                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Departamento" style="color: #337ab7" />
                         </f:facet>  
                         <h:outputText value="#{doc.dept.descricao}" />
                     </h:column> 
-
+                     
                     <h:column>
                         <h:form>
                             <h:commandLink class="glyphicon glyphicon-remove " title="Clique para Remover" actionListener="#{docControl.remover(doc)}"/> |              
-                            <h:commandLink class="glyphicon glyphicon-pencil "  title= "Clique para Editar" actionListener="#{docControl.alterarDocente(doc)}" action="editaDocente"/> |
-                            <h:commandLink class="glyphicon glyphicon-plus "  title= "Clique para Autorizar Docente" actionListener="#{docControl.alterarDocente(doc)}" action="autorizaDiscentes"/>
+                            <h:commandLink class="glyphicon glyphicon-pencil "  title= "Clique para Editar" actionListener="#{docControl.alterarDocente(doc)}" action="editaDocente"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>           
